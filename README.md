@@ -69,42 +69,6 @@ const String OPEN_WEATHER_API_KEY = "YOUR_API_KEY_HERE";
 4.Chạy Ứng Dụng:
 flutter run
 
-🚀 Bắt đầu Nhanh
-
-Thực hiện theo các bước dưới đây để chạy dự án trên máy cục bộ của bạn.
-
-1. Yêu cầu Tiên quyết
-
-Đã cài đặt Flutter SDK và cấu hình môi trường.
-
-Có một API Key hợp lệ từ nhà cung cấp dịch vụ thời tiết (ví dụ: OpenWeatherMap).
-
-2. Cấu hình Dự án
-
-Clone repository này:
-
-git clone [LINK_REPOSITORY_CỦA_BẠN]
-cd flutter_application_1
-
-
-Cài đặt các dependencies:
-
-flutter pub get
-
-
-Cấu hình API Key:
-
-Mở file dịch vụ thời tiết (lib/services/weather_service.dart).
-
-Thay thế chuỗi YOUR_OPENWEATHER_API_KEY bằng API Key thực tế của bạn.
-
-// Ví dụ trong weather_service.dart
-const String _apiKey = 'YOUR_OPENWEATHER_API_KEY';
-
-
-Cấu hình quyền (cho thiết bị di động):
-
-Đảm bảo bạn đã thêm quyền truy cập mạng và vị trí cần thiết trong file AndroidManifest.xml (Android) và Info.plist (iOS).
 
 📐 Kiến trúc Code
 

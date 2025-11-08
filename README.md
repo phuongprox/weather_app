@@ -129,18 +129,3 @@ Chứa các thành phần UI có thể tái sử dụng được (reusable UI co
 
 weather_card.dart (Widget để hiển thị thông tin thời tiết trong thẻ).
 
-🤝 Đóng góp
-
-Bạn muốn đóng góp cho dự án này? Hãy làm theo các bước sau:
-
-Fork repository.
-
-Tạo một branch mới cho tính năng của bạn (git checkout -b feature/tinh-nang-moi).
-
-Commit các thay đổi của bạn (git commit -m 'feat: Thêm tính năng mới X').
-
-Push lên branch (git push origin feature/tinh-nang-moi).
-
-Mở một Pull Request.
-
-© 2024 [Tên của bạn hoặc Tên Nhóm]

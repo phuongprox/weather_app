@@ -15,10 +15,6 @@ Một vài tài nguyên để bạn bắt đầu nếu đây là dự án Flutte
 [tài liệu trực tuyến](https://docs.flutter.dev/), nơi cung cấp các hướng dẫn,
 ví dụ, hướng dẫn về phát triển ứng dụng di động và tài liệu tham khảo API đầy đủ.
 
-Tuyệt vời! Một file README.md chuyên nghiệp là yếu tố then chốt để trình bày dự án của bạn (đặc biệt là cho một môn học cuối kỳ). Nó giúp người xem (giảng viên, người đánh giá) hiểu rõ về dự án, công nghệ sử dụng và những điểm độc đáo, đặc biệt là phần tích hợp AI/Phân tích Dữ liệu Lịch sử.
-
-Dưới đây là bản nháp README.md giới thiệu về dự án ứng dụng dự báo thời tiết Flutter của bạn:
-
 🌧️ WeatherInsight: Ứng Dụng Dự Báo Thời Tiết Thông Minh (Flutter)
 🌟 Giới Thiệu Dự Án
 WeatherInsight là một ứng dụng di động được xây dựng bằng Flutter, cung cấp thông tin dự báo thời tiết chính xác và chi tiết. Điểm đặc biệt của dự án là việc tích hợp tính năng Phân tích Dữ liệu Lịch sử (AI/ML) để đưa ra các nhận định và đối chiếu thông minh, giúp người dùng hiểu rõ hơn về xu hướng thời tiết hiện tại so với quá khứ.

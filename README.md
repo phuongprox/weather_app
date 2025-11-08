@@ -15,21 +15,30 @@ Một vài tài nguyên để bạn bắt đầu nếu đây là dự án Flutte
 [tài liệu trực tuyến](https://docs.flutter.dev/), nơi cung cấp các hướng dẫn,
 ví dụ, hướng dẫn về phát triển ứng dụng di động và tài liệu tham khảo API đầy đủ.
 
-Ứng dụng Dự báo Thời tiết (Flutter Weather App)
+Tuyệt vời! Một file README.md chuyên nghiệp là yếu tố then chốt để trình bày dự án của bạn (đặc biệt là cho một môn học cuối kỳ). Nó giúp người xem (giảng viên, người đánh giá) hiểu rõ về dự án, công nghệ sử dụng và những điểm độc đáo, đặc biệt là phần tích hợp AI/Phân tích Dữ liệu Lịch sử.
 
-Đây là một ứng dụng di động được xây dựng bằng Flutter, cho phép người dùng xem dự báo thời tiết hiện tại và trong tương lai gần cho bất kỳ địa điểm nào trên thế giới, sử dụng API của OpenWeatherMap (hoặc một nhà cung cấp khác).
+Dưới đây là bản nháp README.md giới thiệu về dự án ứng dụng dự báo thời tiết Flutter của bạn:
 
-🌍 Tính năng Chính
+🌧️ WeatherInsight: Ứng Dụng Dự Báo Thời Tiết Thông Minh (Flutter)
+🌟 Giới Thiệu Dự Án
+WeatherInsight là một ứng dụng di động được xây dựng bằng Flutter, cung cấp thông tin dự báo thời tiết chính xác và chi tiết. Điểm đặc biệt của dự án là việc tích hợp tính năng Phân tích Dữ liệu Lịch sử (AI/ML) để đưa ra các nhận định và đối chiếu thông minh, giúp người dùng hiểu rõ hơn về xu hướng thời tiết hiện tại so với quá khứ.
 
-Thời tiết Hiện tại: Hiển thị nhiệt độ, điều kiện thời tiết, độ ẩm, tốc độ gió và áp suất.
+Dự án này được phát triển như một sản phẩm cuối kỳ cho môn [Tên môn học] với mục tiêu kết hợp kỹ năng phát triển di động (Flutter) và xử lý dữ liệu (Phân tích Thống kê Nâng cao).
 
-Dự báo Chi tiết: Cung cấp dự báo theo giờ hoặc theo ngày (tùy thuộc vào tích hợp API).
+🚀 Tính Năng Nổi Bật
+Dự báo Chi tiết 7 Ngày: Cung cấp thông tin nhiệt độ, độ ẩm, tốc độ gió và áp suất cho 7 ngày tiếp theo.
 
-Tìm kiếm Địa điểm: Cho phép người dùng tìm kiếm thời tiết theo tên thành phố.
+Tự động Định vị: Sử dụng geolocator để tự động hiển thị thời tiết của vị trí hiện tại của người dùng.
 
-Vị trí Hiện tại: Tự động phát hiện và hiển thị thời tiết tại vị trí hiện tại của người dùng.
+Tìm kiếm Linh hoạt: Cho phép người dùng tìm kiếm và xem thời tiết của bất kỳ thành phố nào trên thế giới.
 
-Giao diện Đẹp mắt: Giao diện người dùng trực quan và phản hồi nhanh (responsive UI).
+🔥 Weather AI Insight (Điểm nhấn):
+
+Đối chiếu Lịch sử: So sánh các chỉ số thời tiết hiện tại (ví dụ: nhiệt độ trung bình) với cùng kỳ năm trước.
+
+Phán đoán Xu hướng: Đưa ra các nhận định đơn giản dựa trên sự khác biệt về phần trăm (ví dụ: "Nhiệt độ tuần này cao hơn 10% so với năm ngoái, cảnh báo nắng nóng bất thường").
+
+Giao diện Đẹp mắt: UI hiện đại, sử dụng gradient và biểu tượng động để tăng trải nghiệm người dùng.
 
 🛠️ Công nghệ Sử dụng
 
@@ -44,6 +53,25 @@ API Dữ liệu: OpenWeatherMap API (hoặc tương đương).
 HTTP Client: http package (hoặc dio).
 
 Location: geolocator package (để lấy vị trí hiện tại).
+
+⚙️ Hướng Dẫn Cài Đặt và Chạy Dự Án
+Để chạy dự án này trên thiết bị của bạn, vui lòng thực hiện các bước sau:
+
+1.Clone Repository:
+git clone [LINK_ĐẾN_REPOSITORY_CỦA_BẠN]
+cd weather_insight
+
+2.Cài đặt Dependencies:
+flutter pub get
+
+3.Thiết lập API Key:
+Đăng ký tài khoản tại [Tên API bạn sử dụng] và lấy API Key.
+
+Tạo file cấu hình (ví dụ: lib/constants/api_keys.dart) và thêm key của bạn:
+const String OPEN_WEATHER_API_KEY = "YOUR_API_KEY_HERE";
+
+4.Chạy Ứng Dụng:
+flutter run
 
 🚀 Bắt đầu Nhanh
 
@@ -81,13 +109,6 @@ const String _apiKey = 'YOUR_OPENWEATHER_API_KEY';
 Cấu hình quyền (cho thiết bị di động):
 
 Đảm bảo bạn đã thêm quyền truy cập mạng và vị trí cần thiết trong file AndroidManifest.xml (Android) và Info.plist (iOS).
-
-3. Chạy Ứng dụng
-
-Kết nối thiết bị hoặc chạy simulator/emulator, sau đó:
-
-flutter run
-
 
 📐 Kiến trúc Code
 
@@ -129,3 +150,5 @@ Chứa các thành phần UI có thể tái sử dụng được (reusable UI co
 
 weather_card.dart (Widget để hiển thị thông tin thời tiết trong thẻ).
 
+🧑‍💻 Tác Giả
+[Nguyễn Nam Phương] - [TDMU/2224801030038@student.tdmu.edu.vn] - [Email: namphuong.844220@gmail.com/Github: https://github.com/phuongprox]

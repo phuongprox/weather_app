@@ -1,6 +1,5 @@
-# flutter_application_1
 
-New Project Flutter
+**New Project Flutter**
 
 ## Bắt đầu
 
@@ -15,42 +14,43 @@ Một vài tài nguyên để bạn bắt đầu nếu đây là dự án Flutte
 [tài liệu trực tuyến](https://docs.flutter.dev/), nơi cung cấp các hướng dẫn,
 ví dụ, hướng dẫn về phát triển ứng dụng di động và tài liệu tham khảo API đầy đủ.
 
-🌧️ WeatherInsight: Ứng Dụng Dự Báo Thời Tiết Thông Minh (Flutter)
+🌧️ **WeatherInsight**: Ứng Dụng Dự Báo Thời Tiết Thông Minh (Flutter)
 🌟 Giới Thiệu Dự Án
 WeatherInsight là một ứng dụng di động được xây dựng bằng Flutter, cung cấp thông tin dự báo thời tiết chính xác và chi tiết. Điểm đặc biệt của dự án là việc tích hợp tính năng Phân tích Dữ liệu Lịch sử (AI/ML) để đưa ra các nhận định và đối chiếu thông minh, giúp người dùng hiểu rõ hơn về xu hướng thời tiết hiện tại so với quá khứ.
 
-Dự án này được phát triển như một sản phẩm cuối kỳ cho môn [Tên môn học] với mục tiêu kết hợp kỹ năng phát triển di động (Flutter) và xử lý dữ liệu (Phân tích Thống kê Nâng cao).
+Dự án này được phát triển như một sản phẩm cuối kỳ cho môn **Phát triển ứng dụng đa nền tảng** với mục tiêu kết hợp kỹ năng phát triển di động (Flutter) và xử lý dữ liệu (Phân tích Thống kê Nâng cao).
 
 🚀 Tính Năng Nổi Bật
-Dự báo Chi tiết 7 Ngày: Cung cấp thông tin nhiệt độ, độ ẩm, tốc độ gió và áp suất cho 7 ngày tiếp theo.
+- Dự báo Chi tiết 7 Ngày: Cung cấp thông tin nhiệt độ, độ ẩm, tốc độ gió và áp suất cho 7 ngày tiếp theo.
 
-Tự động Định vị: Sử dụng geolocator để tự động hiển thị thời tiết của vị trí hiện tại của người dùng.
+- Tự động Định vị: Sử dụng geolocator để tự động hiển thị thời tiết của vị trí hiện tại của người dùng.
 
-Tìm kiếm Linh hoạt: Cho phép người dùng tìm kiếm và xem thời tiết của bất kỳ thành phố nào trên thế giới.
+- Tìm kiếm Linh hoạt: Cho phép người dùng tìm kiếm và xem thời tiết của bất kỳ thành phố nào trên thế giới.
 
 🔥 Weather AI Insight (Điểm nhấn):
 
-Đối chiếu Lịch sử: So sánh các chỉ số thời tiết hiện tại (ví dụ: nhiệt độ trung bình) với cùng kỳ năm trước.
+- Đối chiếu Lịch sử: So sánh các chỉ số thời tiết hiện tại (ví dụ: nhiệt độ trung bình) với cùng kỳ năm trước.
 
-Phán đoán Xu hướng: Đưa ra các nhận định đơn giản dựa trên sự khác biệt về phần trăm (ví dụ: "Nhiệt độ tuần này cao hơn 10% so với năm ngoái, cảnh báo nắng nóng bất thường").
+- Phán đoán Xu hướng: Đưa ra các nhận định đơn giản dựa trên sự khác biệt về phần trăm (ví dụ: "Nhiệt độ tuần này cao hơn 10% so với năm ngoái, cảnh báo nắng nóng bất thường").
 
-Giao diện Đẹp mắt: UI hiện đại, sử dụng gradient và biểu tượng động để tăng trải nghiệm người dùng.
+- Giao diện Đẹp mắt: UI hiện đại, sử dụng gradient và biểu tượng động để tăng trải nghiệm người dùng.
 
 🛠️ Công nghệ Sử dụng
 
-Framework: Flutter
+- Framework: Flutter
 
-Ngôn ngữ: Dart
+- Ngôn ngữ: Dart
 
-Quản lý Trạng thái (State Management): Sử dụng Provider (dựa trên cấu trúc thư mục providers).
+- Quản lý Trạng thái (State Management): Sử dụng Provider (dựa trên cấu trúc thư mục providers).
 
-API Dữ liệu: OpenWeatherMap API (hoặc tương đương).
+- API Dữ liệu: OpenWeatherMap API.
 
-HTTP Client: http package (hoặc dio).
+- HTTP Client: http package (hoặc dio).
 
-Location: geolocator package (để lấy vị trí hiện tại).
+- Location: geolocator package (để lấy vị trí hiện tại).
 
 ⚙️ Hướng Dẫn Cài Đặt và Chạy Dự Án
+
 Để chạy dự án này trên thiết bị của bạn, vui lòng thực hiện các bước sau:
 
 1.Clone Repository:
@@ -112,39 +112,35 @@ Dự án được tổ chức theo kiến trúc phân lớp rõ ràng để dễ
 
 Thư mục
 
-Mục đích
+- lib/models
 
-Ví dụ File
+  Chứa các mô hình dữ liệu (Dart classes) để ánh xạ (map) phản hồi JSON từ API.
 
-lib/models
+- weather.dart (Chứa class Weather và các class liên quan như Main, Wind, v.v.)
 
-Chứa các mô hình dữ liệu (Dart classes) để ánh xạ (map) phản hồi JSON từ API.
+- lib/services
 
-weather.dart (Chứa class Weather và các class liên quan như Main, Wind, v.v.)
+  Chứa logic nghiệp vụ liên quan đến việc giao tiếp với các dịch vụ bên ngoài (như API).
 
-lib/services
+- weather_service.dart (Chứa các hàm như fetchCurrentWeather() và fetchForecast())
 
-Chứa logic nghiệp vụ liên quan đến việc giao tiếp với các dịch vụ bên ngoài (như API).
+- lib/providers
 
-weather_service.dart (Chứa các hàm như fetchCurrentWeather() và fetchForecast())
+  Chứa các lớp quản lý trạng thái (ChangeNotifier hoặc Provider tương đương) để cung cấp dữ liệu cho toàn bộ ứng dụng.
 
-lib/providers
+- weather_provider.dart (Quản lý trạng thái tải, lỗi và dữ liệu thời tiết đã fetch).
 
-Chứa các lớp quản lý trạng thái (ChangeNotifier hoặc Provider tương đương) để cung cấp dữ liệu cho toàn bộ ứng dụng.
+- lib/screens
 
-weather_provider.dart (Quản lý trạng thái tải, lỗi và dữ liệu thời tiết đã fetch).
+  Chứa các màn hình chính (pages) của ứng dụng.
 
-lib/screens
+- home_screen.dart (Màn hình chính hiển thị thời tiết).
 
-Chứa các màn hình chính (pages) của ứng dụng.
+- lib/widgets
 
-home_screen.dart (Màn hình chính hiển thị thời tiết).
+  Chứa các thành phần UI có thể tái sử dụng được (reusable UI components).
 
-lib/widgets
-
-Chứa các thành phần UI có thể tái sử dụng được (reusable UI components).
-
-weather_card.dart (Widget để hiển thị thông tin thời tiết trong thẻ).
+- weather_card.dart (Widget để hiển thị thông tin thời tiết trong thẻ).
 
 🧑‍💻 Tác Giả
 [Nguyễn Nam Phương] - [TDMU/2224801030038@student.tdmu.edu.vn] - [Email: namphuong.844220@gmail.com/Github: https://github.com/phuongprox]

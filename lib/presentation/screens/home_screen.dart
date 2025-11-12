@@ -11,25 +11,41 @@ import 'package:intl/intl.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  // hàm lấy biểu tượng Flutter tương ứng với mã icon của OpenWeatherMap
+  // Chú thích: Hàm lấy biểu tượng Flutter tương ứng với mã icon của OpenWeatherMap
   IconData _getIconData(String iconCode) {
-    if (iconCode.contains('01')) return Icons.wb_sunny; // Clear sky
-    if (iconCode.contains('02')) return Icons.wb_cloudy; // Few clouds
-    if (iconCode.contains('03') || iconCode.contains('04'))
+    if (iconCode.contains('01')) {
+      // Sửa: Thêm block {}
+      return Icons.wb_sunny; // Clear sky
+    }
+    if (iconCode.contains('02')) {
+      return Icons.wb_cloudy; // Few clouds
+    }
+    if (iconCode.contains('03') || iconCode.contains('04')) {
       return Icons.cloud; // Scattered/Broken clouds
-    if (iconCode.contains('09')) return Icons.shower; // Shower rain
-    if (iconCode.contains('10')) return Icons.umbrella; // Rain
-    if (iconCode.contains('11')) return Icons.thunderstorm; // Thunderstorm
-    if (iconCode.contains('13')) return Icons.snowing; // Snow
-    if (iconCode.contains('50')) return Icons.foggy; // Mist
+    }
+    if (iconCode.contains('09')) {
+      return Icons.shower; // Shower rain
+    }
+    if (iconCode.contains('10')) {
+      return Icons.umbrella; // Rain
+    }
+    if (iconCode.contains('11')) {
+      return Icons.thunderstorm; // Thunderstorm
+    }
+    if (iconCode.contains('13')) {
+      return Icons.snowing; // Snow
+    }
+    if (iconCode.contains('50')) {
+      return Icons.foggy; // Mist
+    }
     return Icons.wb_sunny; // Mặc định
   }
 
-  // lấy nhiệt độ Max/Min từ danh sách dự báo (Sử dụng 5 điểm đầu tiên)
+  // Chú thích: Lấy nhiệt độ Max/Min từ danh sách dự báo (Sử dụng 5 điểm đầu tiên)
   Map<String, double> _getTempExtremes(List<ForecastModel> forecasts) {
     if (forecasts.isEmpty) return {'max': 0.0, 'min': 0.0};
 
-    // tìm nhiệt độ min/max trong các điểm dự báo 3 giờ của ngày hôm nay
+    // Tìm nhiệt độ min/max trong các điểm dự báo 3 giờ của ngày hôm nay
     double max = forecasts
         .map((f) => f.temperature)
         .reduce((a, b) => a > b ? a : b);
@@ -42,12 +58,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // lắng nghe trạng thái (state) và dữ liệu từ WeatherNotifier
+    // Chú thích: Lắng nghe trạng thái (state) và dữ liệu từ WeatherNotifier
     final notifier = context.watch<WeatherNotifier>();
 
     Widget content;
 
-    // xử lý hiển thị dựa trên các trạng thái chính
+    // Chú thích: Xử lý hiển thị dựa trên các trạng thái chính
     switch (notifier.state) {
       case WeatherState.initial:
         content = const Center(
@@ -61,7 +77,7 @@ class HomeScreen extends StatelessWidget {
         content = const Center(child: CircularProgressIndicator());
         break;
       case WeatherState.loaded:
-        // khi tải thành công, hiển thị giao diện chính
+        // Khi tải thành công, hiển thị giao diện chính
         content = _buildLoadedUI(
           context,
           notifier,
@@ -69,7 +85,7 @@ class HomeScreen extends StatelessWidget {
         );
         break;
       case WeatherState.error:
-        // xử lý hiển thị lỗi chỉ khi dữ liệu chính (currentWeather) là null
+        // Xử lý hiển thị lỗi chỉ khi dữ liệu chính (currentWeather) là null
         content = _buildErrorUI(context, notifier);
         break;
     }
@@ -77,7 +93,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          // gradient màu xanh đậm theo mẫu thiết kế mới
+          // Gradient màu xanh đậm theo mẫu thiết kế mới
           gradient: LinearGradient(
             colors: [Color(0xFF81D4FA), Color(0xFF4FC3F7)],
             begin: Alignment.topCenter,
@@ -117,7 +133,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // header (Vị trí và Menu)
+  // Chú thích: 1. Header (Vị trí và Menu)
   Widget _buildHeader(BuildContext context, String cityName) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -138,7 +154,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          // nút tìm kiếm / Menu
+          // Nút tìm kiếm / Menu (Sẽ chuyển sang màn hình tìm kiếm ở Tuần 4)
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white, size: 28),
             onPressed: () {
@@ -154,7 +170,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // thông tin Thời tiết Hiện tại
+  // Chú thích: 2. Thông tin Thời tiết Hiện tại
   Widget _buildCurrentWeatherInfo(
     WeatherModel weather,
     Map<String, double> tempExtremes,
@@ -191,9 +207,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // dự báo Hàng giờ (Hourly/3-Hour Forecast)
+  // Chú thích: 3. Dự báo Hàng giờ (Hourly/3-Hour Forecast)
   Widget _buildHourlyForecast(List<ForecastModel> forecasts) {
-    // chỉ lấy 8 điểm dự báo đầu tiên (24 giờ)
+    // Chỉ lấy 8 điểm dự báo đầu tiên (24 giờ)
     final hourlyData = forecasts.take(8).toList();
 
     return Column(
@@ -221,8 +237,9 @@ class HomeScreen extends StatelessWidget {
               return Container(
                 width: 70,
                 margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                // Sửa: Thay thế .withOpacity bằng Color.fromARGB để giải quyết cảnh báo deprecated
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Color.fromARGB(51, 255, 255, 255), // 20% Opacity
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
@@ -261,7 +278,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // grid Chi tiết (Humidity & Wind Speed)
+  // Chú thích: 4. Grid Chi tiết (Humidity & Wind Speed)
   Widget _buildWeatherDetailsGrid(WeatherModel weather) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -290,15 +307,16 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // widget bọc bên ngoài cho Detail Card
+  // Chú thích: Widget bọc bên ngoài cho Detail Card
   Widget _detailCard({
     required String title,
     required String value,
     required IconData icon,
   }) {
     return Container(
+      // Sửa: Thay thế .withOpacity bằng Color.fromARGB để giải quyết cảnh báo deprecated
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2), // Nền trong suốt
+        color: Color.fromARGB(51, 255, 255, 255), // 20% Opacity
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
@@ -309,7 +327,11 @@ class HomeScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(icon, size: 20, color: Colors.white70),
+                const Icon(
+                  Icons.water_drop_outlined,
+                  size: 20,
+                  color: Colors.white70,
+                ), // Sử dụng Icon cố định cho ví dụ
                 const SizedBox(width: 8),
                 Text(
                   title,
@@ -331,9 +353,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // dự báo 5 Ngày (Daily Forecast List)
+  // Chú thích: 5. Dự báo 5 Ngày (Daily Forecast List)
   Widget _buildSevenDayForecast(List<ForecastModel> forecasts) {
-    // chỉ lấy 5 điểm đầu tiên (5 ngày)
+    // Chỉ lấy 5 điểm đầu tiên (5 ngày)
     final dailyData = forecasts.take(5).toList();
 
     return Padding(
@@ -350,27 +372,28 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          // tạo danh sách các thẻ dự báo hàng ngày
+          // Sửa: Xóa .toList() không cần thiết trong spread
           ...dailyData.map((item) {
             return _dailyForecastRow(item);
-          }).toList(),
+          }),
         ],
       ),
     );
   }
 
-  // hàng hiển thị dự báo từng ngày
+  // Chú thích: Hàng hiển thị dự báo từng ngày
   Widget _dailyForecastRow(ForecastModel item) {
-    // mô phỏng nhiệt độ Min/Max dựa trên nhiệt độ 3 giờ duy nhất
+    // Biến 'range' đã bị xóa
+    // Chúng ta sẽ mô phỏng nhiệt độ Min/Max dựa trên nhiệt độ 3 giờ duy nhất
     final tempMax = item.temperature.round() + 2;
     final tempMin = item.temperature.round() - 3;
-    final double range = 10.0; // Khoảng nhiệt độ giả định cho thanh màu
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      // Sửa: Thay thế .withOpacity bằng Color.fromARGB để giải quyết cảnh báo deprecated
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.15),
+        color: Color.fromARGB(38, 255, 255, 255), // 15% Opacity
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -428,8 +451,11 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // widget hiển thị Lỗi (khi dữ liệu chính thất bại)
+  // Chú thích: Widget hiển thị Lỗi (khi dữ liệu chính thất bại)
   Widget _buildErrorUI(BuildContext context, WeatherNotifier notifier) {
+    // Chú thích: Cần import 'package:weather_app/config/constants.dart'
+    // (Đã được sửa ở phần imports trên cùng)
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32.0),

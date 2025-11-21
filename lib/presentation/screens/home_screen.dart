@@ -7,14 +7,15 @@ import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/data/models/forecast_model.dart';
 import 'package:weather_app/config/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_app/presentation/screens/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  // Chú thích: Hàm lấy biểu tượng Flutter tương ứng với mã icon của OpenWeatherMap
+  //Hàm lấy biểu tượng Flutter tương ứng với mã icon của OpenWeatherMap
   IconData _getIconData(String iconCode) {
     if (iconCode.contains('01')) {
-      // Sửa: Thêm block {}
+      //Thêm block {}
       return Icons.wb_sunny; // Clear sky
     }
     if (iconCode.contains('02')) {
@@ -41,7 +42,7 @@ class HomeScreen extends StatelessWidget {
     return Icons.wb_sunny; // Mặc định
   }
 
-  // Chú thích: Lấy nhiệt độ Max/Min từ danh sách dự báo (Sử dụng 5 điểm đầu tiên)
+  //Lấy nhiệt độ Max/Min từ danh sách dự báo
   Map<String, double> _getTempExtremes(List<ForecastModel> forecasts) {
     if (forecasts.isEmpty) return {'max': 0.0, 'min': 0.0};
 
@@ -58,12 +59,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Chú thích: Lắng nghe trạng thái (state) và dữ liệu từ WeatherNotifier
+    //Lắng nghe trạng thái (state) và dữ liệu từ WeatherNotifier
     final notifier = context.watch<WeatherNotifier>();
 
     Widget content;
 
-    // Chú thích: Xử lý hiển thị dựa trên các trạng thái chính
+    //Xử lý hiển thị dựa trên các trạng thái chính
     switch (notifier.state) {
       case WeatherState.initial:
         content = const Center(
@@ -93,7 +94,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          // Gradient màu xanh đậm theo mẫu thiết kế mới
+          // Gradient màu xanh đậm
           gradient: LinearGradient(
             colors: [Color(0xFF81D4FA), Color(0xFF4FC3F7)],
             begin: Alignment.topCenter,
@@ -104,8 +105,6 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  // === CÁC WIDGET CHÍNH (LOADED) ===
 
   Widget _buildLoadedUI(
     BuildContext context,
@@ -133,7 +132,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Chú thích: 1. Header (Vị trí và Menu)
+  //Header (Vị trí và Menu)
   Widget _buildHeader(BuildContext context, String cityName) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -154,15 +153,14 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          // Nút tìm kiếm / Menu (Sẽ chuyển sang màn hình tìm kiếm ở Tuần 4)
+          // Nút tìm kiếm / Menu
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white, size: 28),
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Chức năng Tìm kiếm sẽ được triển khai!'),
-                ),
-              );
+              // *** ĐOẠN CODE CHUYỂN HƯỚNG SANG SEARCH_SCREEN ***
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (_) => const SearchScreen()));
             },
           ),
         ],
@@ -170,7 +168,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Chú thích: 2. Thông tin Thời tiết Hiện tại
+  //Thông tin Thời tiết Hiện tại
   Widget _buildCurrentWeatherInfo(
     WeatherModel weather,
     Map<String, double> tempExtremes,
@@ -207,9 +205,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Chú thích: 3. Dự báo Hàng giờ (Hourly/3-Hour Forecast)
+  //Dự báo Hàng giờ (Hourly/3-Hour Forecast)
   Widget _buildHourlyForecast(List<ForecastModel> forecasts) {
-    // Chỉ lấy 8 điểm dự báo đầu tiên (24 giờ)
+    // Lấy 8 điểm dự báo đầu tiên (24 giờ)
     final hourlyData = forecasts.take(8).toList();
 
     return Column(
@@ -237,7 +235,6 @@ class HomeScreen extends StatelessWidget {
               return Container(
                 width: 70,
                 margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                // Sửa: Thay thế .withOpacity bằng Color.fromARGB để giải quyết cảnh báo deprecated
                 decoration: BoxDecoration(
                   color: Color.fromARGB(51, 255, 255, 255), // 20% Opacity
                   borderRadius: BorderRadius.circular(16),
@@ -278,7 +275,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Chú thích: 4. Grid Chi tiết (Humidity & Wind Speed)
+  //Grid Chi tiết (Humidity & Wind Speed)
   Widget _buildWeatherDetailsGrid(WeatherModel weather) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -289,7 +286,7 @@ class HomeScreen extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 15,
           mainAxisSpacing: 15,
-          childAspectRatio: 1.8, // Tăng chiều ngang cho gọn hơn
+          childAspectRatio: 1.8, // Tăng chiều ngang
         ),
         children: [
           _detailCard(
@@ -307,14 +304,14 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Chú thích: Widget bọc bên ngoài cho Detail Card
+  //Widget bọc bên ngoài cho Detail Card
   Widget _detailCard({
     required String title,
     required String value,
     required IconData icon,
   }) {
     return Container(
-      // Sửa: Thay thế .withOpacity bằng Color.fromARGB để giải quyết cảnh báo deprecated
+      //Thay thế .withOpacity bằng Color.fromARGB giải quyết cảnh báo deprecated
       decoration: BoxDecoration(
         color: Color.fromARGB(51, 255, 255, 255), // 20% Opacity
         borderRadius: BorderRadius.circular(16),
@@ -353,9 +350,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Chú thích: 5. Dự báo 5 Ngày (Daily Forecast List)
+  //Dự báo 5 Ngày (Daily Forecast List)
   Widget _buildSevenDayForecast(List<ForecastModel> forecasts) {
-    // Chỉ lấy 5 điểm đầu tiên (5 ngày)
+    // Lấy 5 điểm đầu tiên (5 ngày)
     final dailyData = forecasts.take(5).toList();
 
     return Padding(
@@ -372,7 +369,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          // Sửa: Xóa .toList() không cần thiết trong spread
+          //Xóa .toList() không cần thiết trong spread
           ...dailyData.map((item) {
             return _dailyForecastRow(item);
           }),
@@ -381,17 +378,17 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Chú thích: Hàng hiển thị dự báo từng ngày
+  //Hàng hiển thị dự báo từng ngày
   Widget _dailyForecastRow(ForecastModel item) {
-    // Biến 'range' đã bị xóa
-    // Chúng ta sẽ mô phỏng nhiệt độ Min/Max dựa trên nhiệt độ 3 giờ duy nhất
+    // Biến 'range' bị xóa
+    //Mô phỏng nhiệt độ Min/Max dựa trên nhiệt độ 3 giờ duy nhất
     final tempMax = item.temperature.round() + 2;
     final tempMin = item.temperature.round() - 3;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      // Sửa: Thay thế .withOpacity bằng Color.fromARGB để giải quyết cảnh báo deprecated
+      //Thay thế .withOpacity bằng Color.fromARGB giải quyết cảnh báo deprecated
       decoration: BoxDecoration(
         color: Color.fromARGB(38, 255, 255, 255), // 15% Opacity
         borderRadius: BorderRadius.circular(12),
@@ -451,11 +448,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Chú thích: Widget hiển thị Lỗi (khi dữ liệu chính thất bại)
+  //Widget hiển thị Lỗi (khi dữ liệu chính thất bại)
   Widget _buildErrorUI(BuildContext context, WeatherNotifier notifier) {
-    // Chú thích: Cần import 'package:weather_app/config/constants.dart'
-    // (Đã được sửa ở phần imports trên cùng)
-
+    //Cần import 'package:weather_app/config/constants.dart'
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32.0),

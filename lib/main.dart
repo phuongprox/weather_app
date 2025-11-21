@@ -1,8 +1,5 @@
-// lib/main.dart
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// Imports
 import 'package:weather_app/data/repository/weather_repo.dart';
 import 'package:weather_app/presentation/state_mgt/weather_notifier.dart';
 import 'package:weather_app/presentation/screens/home_screen.dart';
@@ -10,13 +7,13 @@ import 'package:weather_app/config/constants.dart';
 
 void main() {
   runApp(
-    // Chú thích: MultiProvider để cung cấp các dịch vụ/trạng thái cho toàn ứng dụng
+    //MultiProvider để cung cấp các dịch vụ/trạng thái cho toàn ứng dụng
     MultiProvider(
       providers: [
-        // 1. Cung cấp WeatherRepository (Service/Data Layer)
+        //Cung cấp WeatherRepository
         Provider(create: (_) => WeatherRepository()),
 
-        // 2. Cung cấp WeatherNotifier (State Manager/Business Logic)
+        // Cung cấp WeatherNotifier
         ChangeNotifierProvider(
           create: (context) =>
               WeatherNotifier(
@@ -42,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0D47A1)),
         useMaterial3: true,
       ),
-      // 🚨 SỬA ĐỔI CHÍNH: Thêm thuộc tính này để ẩn tag DEBUG
+      //Thêm thuộc tính ẩn tag DEBUG
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(), // Sử dụng HomeScreen chính thức
     );

@@ -11,6 +11,9 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+# Loại bỏ các thư mục nền tảng cụ thể
+/linux/
+/macos/
 
 # IntelliJ related
 *.iml

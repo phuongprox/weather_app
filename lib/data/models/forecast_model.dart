@@ -1,5 +1,3 @@
-// lib/data/models/forecast_model.dart
-
 class ForecastModel {
   final double temperature; // nhiệt độ duy nhất (do dùng API /forecast)
   final String iconCode;

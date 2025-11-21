@@ -31,7 +31,6 @@ class WeatherNotifier extends ChangeNotifier {
   HistoricalModel? get historicalData => _historicalData;
   String get errorMessage => _errorMessage;
 
-  // hàm mô phỏng dữ liệu lịch sử cho tính năng AI (Vì API gốc bị lỗi 401)
   HistoricalModel _getMockHistoricalData() {
     // tạo dữ liệu 30 ngày trước với nhiệt độ ngẫu nhiên
     final thirtyDaysAgo = DateTime.now().subtract(const Duration(days: 30));
@@ -43,7 +42,7 @@ class WeatherNotifier extends ChangeNotifier {
     );
   }
 
-  // logic lấy dữ liệu Dự báo (Tách biệt) ===
+  // logic lấy dữ liệu Dự báo (Tách biệt)
   Future<void> _fetchForecasts(String city) async {
     try {
       final rawForecasts = await _repository.fetchFiveDayForecast(city);
@@ -59,7 +58,7 @@ class WeatherNotifier extends ChangeNotifier {
     }
   }
 
-  // logic lấy dữ liệu Hiện tại (Chính) ===
+  // logic lấy dữ liệu Hiện tại (Chính)
   Future<WeatherModel> _fetchCurrentWeather(String city) async {
     try {
       return await _repository.fetchWeatherByCity(city);
@@ -70,19 +69,19 @@ class WeatherNotifier extends ChangeNotifier {
     }
   }
 
-  // hàm chính: Lấy TẤT CẢ dữ liệu
+  // hàm chính lấy all dữ liệu
   Future<void> fetchWeatherData(String city, {double? lat, double? lon}) async {
     _state = WeatherState.loading;
     notifyListeners(); // bắt đầu Loading
 
     try {
-      // 1. Lấy dữ liệu hiện tại
+      // 1 Lấy dữ liệu hiện tại
       _currentWeather = await _fetchCurrentWeather(city);
 
-      // 2. Lấy dữ liệu Dự báo
+      // 2 Lấy dữ liệu Dự báo
       await _fetchForecasts(city);
 
-      // 3. Lấy/Mô phỏng dữ liệu lịch sử
+      // 3 Lấy/Mô phỏng dữ liệu lịch sử
       _historicalData = _getMockHistoricalData();
 
       _state = WeatherState.loaded;

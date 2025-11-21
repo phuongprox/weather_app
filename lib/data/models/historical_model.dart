@@ -1,5 +1,3 @@
-// lib/data/models/historical_model.dart
-
 class HistoricalModel {
   final double averageTemp;
   final DateTime date;

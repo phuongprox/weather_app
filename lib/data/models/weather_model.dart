@@ -1,5 +1,3 @@
-// lib/data/models/weather_model.dart
-
 class WeatherModel {
   final String cityName;
   final double temperature;
@@ -8,7 +6,7 @@ class WeatherModel {
   final String iconCode; // icon để hiển thị hình ảnh
   final double windSpeed; // tốc độ gió cho chi tiết UI
 
-  // Chú thích: Constructor cho WeatherModel
+  // Constructor cho WeatherModel
   WeatherModel({
     required this.cityName,
     required this.temperature,

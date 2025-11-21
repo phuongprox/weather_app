@@ -1,13 +1,7 @@
-// lib/data/repository/weather_repo.dart
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-// Imports Models
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/data/models/forecast_model.dart';
-
-// Import Constants
 import 'package:weather_app/config/constants.dart';
 
 class WeatherRepository {
